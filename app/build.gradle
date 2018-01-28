@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'cdfinderandroidkey'
             keyPassword 'nicoetguigui'
-            storeFile file('C:/Users/Nicolas/.android/mykeystore.jks')
+            storeFile file('..//mykeystore.jks')
             storePassword 'nicoetguigui'
         }
     }

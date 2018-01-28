@@ -18,14 +18,14 @@
             android:layout_height="130dp"
             android:drawableStart="@android:drawable/ic_menu_search"
             android:id="@+id/search_cd_button"
-            android:text="Search for CD"
+            android:text="@string/search_cd_label"
             />
 
         <Button
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:drawableEnd="@android:drawable/ic_menu_add"
-            android:text="Add a new cd"
+            android:text="@string/add_cd_label"
             android:id="@+id/add_cd_button"
             />
 

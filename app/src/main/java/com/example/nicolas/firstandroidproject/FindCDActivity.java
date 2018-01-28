@@ -6,6 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioGroup;
 
+import com.google.gson.stream.JsonReader;
+
+import java.io.IOException;
+
 /**
  * Created by Nicolas on 07/01/2018.
  */
@@ -38,6 +42,4 @@ public class FindCDActivity  extends AppCompatActivity {
     {
 
     }
-
-
 }

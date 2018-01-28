@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selected_image"
         android:layout_centerHorizontal="true"
-        android:text="Select Image"/>
+        android:text="@string/select_image_button"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
