@@ -5,56 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.nicolas.firstandroidproject.MainActivity2">
-
-    <TextView
-        android:id="@+id/add_cd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_cd"
-        android:textSize="30sp"
-        />
-
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/radio_group_genre"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/add_cd"
-        android:checkedButton="@id/genre_unknown"
-        >
-
-        <RadioButton
-            android:id="@+id/genre_unknown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_unknown"
-            />
-
-        <RadioButton android:id="@+id/radio_pirates"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_rock"
-            />
-        <RadioButton android:id="@+id/radio_ninjas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_classical"
-            />
-
-        <RadioButton
-            android:id="@+id/other_genre_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_other"
-            />
-    </RadioGroup>
+    tools:context="com.example.nicolas.firstandroidproject.AddCDActivity">
 
     <TextView
         android:id="@+id/selected_image_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/radio_group_genre"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
         android:text="Selected Image: "/>
 
     <ImageView
@@ -65,21 +23,99 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/selected_image"
-        android:layout_marginTop="10dp"
-        android:text="Result:"
-        />
-
-
     <Button
         android:id="@+id/select_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/selected_image"
         android:layout_centerHorizontal="true"
         android:text="Select Image"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_url"
+        android:layout_below="@+id/select_image_button"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Or enter URL:"
+            />
+
+        <EditText
+            android:id="@+id/image_url"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:inputType="text"
+            android:layout_weight="0.5"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Download!"
+            android:id="@+id/download_image_url_button"
+            />
+    </LinearLayout>
+
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_below="@id/layout_url"
+        android:layout_above="@id/layout_add_tag"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/fill_in_info_button"
+        android:id="@+id/layout_add_tag"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type in label"
+            android:id="@+id/tag_input_field"
+            android:layout_weight="0.3"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_tag_button"
+            android:text="Add label"
+            android:clickable="false"
+            android:visibility="visible"
+            android:layout_weight="0.7"
+            />
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fill in details"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/fill_in_info_button"
+        android:layout_centerHorizontal="true"
+        />
+
+
 </RelativeLayout>

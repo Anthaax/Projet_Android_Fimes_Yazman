@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.guillaume.findyourcd">
+    package="com.example.nicolas.firstandroidproject">
 
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,21 +19,40 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FindCdActivity">
+
+        <activity android:name=".FindCDActivity">
             <intent-filter>
                 <action android:name="android.intent.action.FIND_CD" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddCdActivity">
+
+        <activity android:name=".AddCDActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ADD_CD" />
             </intent-filter>
         </activity>
-        <service android:name=".CdImageAnalysisService">
+
+        <activity android:name=".AddCdFillInActivity">
             <intent-filter>
-                <action android:name="com.example.nicolas.firstandroidproject." />
+                <action android:name="android.intent.action.ADD_CD_FILL_IN" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+
+        <service android:name=".CDImageAnalysisService">
+            <intent-filter>
+                <action android:name="com.example.nicolas.firstandroidproject."></action>
             </intent-filter>
         </service>
+
+        <activity android:name=".MainActivity2">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST"></action>
+            </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>

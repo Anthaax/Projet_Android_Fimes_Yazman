@@ -5,14 +5,14 @@ android {
         config {
             keyAlias 'cdfinderandroidkey'
             keyPassword 'nicoetguigui'
-            storeFile file('..\\mykeystore.jks')
+            storeFile file('C:/Users/Nicolas/.android/mykeystore.jks')
             storePassword 'nicoetguigui'
         }
     }
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.example.guillaume.findyourcd"
-        minSdkVersion 26
+        applicationId "com.example.nicolas.firstandroidproject"
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"

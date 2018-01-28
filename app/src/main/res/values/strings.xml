@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirstAndroidProject</string>
+    <string name="app_name">Find your Cd!</string>
     <string name="toast_menu">Toast</string>
     <string name="genre_txt">Genre</string>
     <string name="genre_classical">Classical</string>
@@ -10,4 +10,5 @@
     <string name="genre_unknown">Unknown</string>
 
     <string name="add_cd">Add a CD!</string>
+    <string name="confirmation_tag_deletion">Do you want to delete this tag:</string>
 </resources>
