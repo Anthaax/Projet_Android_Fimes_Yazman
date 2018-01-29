@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Find your Cd!</string>
     <string name="toast_menu">Toast</string>
-    <string name="style_label">Style</string>
+    <string name="style_label">Style :</string>
     <string name="genre_label">Genre :</string>
     <string name="genre_classical">Classical</string>
     <string name="genre_rock">Rock</string>
@@ -18,6 +18,14 @@
     <string name="instrument_label">Instrument</string>
     <string name="album_name_label">Album :</string>
     <string name="artist_name_label">Artist :</string>
+    <string name="download_button">Download</string>
+    <string name="enter_url_layout">Or enter URL:</string>
+    <string name="type_label_add">Type label</string>
+    <string name="add_label">Add</string>
+    <string name="fill_in_details_button">Fill in details</string>
+    <string name="swap_album_artist">Swap fields</string>
+
+
 
 
     <string name="add_cd">Add a CD!</string>

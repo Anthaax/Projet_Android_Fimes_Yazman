@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/heap_music_cd"
+    >
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:id="@+id/search_cd_button"
+            android:text="@string/search_cd_label"
+            />
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:drawableEnd="@android:drawable/ic_menu_add"
+            android:text="@string/add_cd_label"
+            android:id="@+id/add_cd_button"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

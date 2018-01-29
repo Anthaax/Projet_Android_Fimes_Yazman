@@ -5,12 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/find_your_cd"
-        android:layout_gravity="center"
-    />
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -20,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/artist_name_label"
+            android:text="Artist:"
             />
 
         <EditText
@@ -37,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -59,61 +55,13 @@
         android:layout_gravity="center"
         android:id="@+id/swap_artist_album"
         />
-
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/radio_group_genre"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/swap_artist_album"
-        android:checkedButton="@id/genre_unknown"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_label"
-            />
-
-        <RadioButton
-            android:id="@+id/genre_unknown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_unknown"
-            />
-
-        <RadioButton android:id="@+id/radio_pirates"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_rock"
-            />
-        <RadioButton android:id="@+id/radio_ninjas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_classical"
-            />
-
-        <RadioButton
-            android:id="@+id/other_genre_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genre_other"
-            />
-
-    </RadioGroup>
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </ListView>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/find_your_cd"
+            android:text="@string/add_cd_button"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             />

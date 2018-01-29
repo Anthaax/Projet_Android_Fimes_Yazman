@@ -17,25 +17,25 @@
 
     <ImageView
         android:id="@+id/selected_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_below="@+id/selected_image_txt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
-
+    />
     <Button
         android:id="@+id/select_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selected_image"
+        android:layout_toRightOf="@id/selected_image"
         android:layout_centerHorizontal="true"
-        android:text="@string/select_image_button"/>
+        android:text="@string/select_image_button"
+        android:layout_marginTop="40dp"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layout_url"
-        android:layout_below="@+id/select_image_button"
+        android:layout_below="@+id/selected_image"
         android:orientation="horizontal"
         >
 
