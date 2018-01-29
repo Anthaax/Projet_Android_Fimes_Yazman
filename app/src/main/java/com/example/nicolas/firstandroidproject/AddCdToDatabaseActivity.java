@@ -36,11 +36,13 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
 
         CdParcelable cd = intent.getParcelableExtra("cd");
     }
-    private AlbumInfo readResult(String jsonStr) {
-        AlbumInfo albumInfo = new AlbumInfo();
+    private AlbumInfo[] readResult(String jsonStr) {
+        AlbumInfo[] albumInfos = null;
         try {
             JSONArray jsonArray = new JSONArray(jsonStr);
+            albumInfos = new AlbumInfo[jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); i++) {
+                AlbumInfo albumInfo = new AlbumInfo();
                 JSONObject jsonobject = jsonArray.getJSONObject(i);
                 albumInfo.id = jsonobject.getInt("id");
                 albumInfo.resource_url = jsonobject.getString("resource_url");
@@ -55,12 +57,13 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
                 albumInfo.label = JSONArrayToStringArray(jsonobject.getJSONArray("label"));
                 albumInfo.genre = JSONArrayToStringArray(jsonobject.getJSONArray("genre"));
                 albumInfo.barcode = JSONArrayToStringArray(jsonobject.getJSONArray("barcode"));
-
+                albumInfo.community = JSONArrayToCommunity(jsonobject.getJSONArray("community"));
+                albumInfos[i] = albumInfo;
             }
         } catch ( JSONException ex){
 
         }
-        return  albumInfo;
+        return  albumInfos;
     }
     private String[] JSONArrayToStringArray(JSONArray json){
         String[] array = new String[json.length()];
