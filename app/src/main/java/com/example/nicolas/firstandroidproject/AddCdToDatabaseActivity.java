@@ -25,7 +25,7 @@ import java.lang.reflect.Type;
 
 public class AddCdToDatabaseActivity extends AppCompatActivity {
 
-    private String _fileName = "findYourCd.txt";
+    private static String _fileName = "findYourCd.txt";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
         AlbumInfo[] albumInfo = AddCdToDatabaseActivity.ReadResultForAlbumInfo(albumInfoStr);
 
         if (albumInfo.length >= 1) {
-            WriteToDatabase(albumInfo[0]);
+            WriteToDatabase(albumInfo[0], this);
         }
         else{
             Toast.makeText(AddCdToDatabaseActivity.this, "Error couldn't find album", Toast.LENGTH_LONG);
@@ -68,8 +68,8 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
         return  gson.toJson(albumInfos);
     }
 
-    private void WriteToDatabase(AlbumInfo albumInfo){
-        AlbumInfo[] albumInfosOld = ReadResultForAlbumInfo(ReadFromDatabase());
+    public static void WriteToDatabase(AlbumInfo albumInfo, AppCompatActivity appCompatActivity){
+        AlbumInfo[] albumInfosOld = ReadResultForAlbumInfo(ReadFromDatabase(appCompatActivity));
         AlbumInfo[] albumInfosNew = new AlbumInfo[albumInfosOld != null ? albumInfosOld.length + 1 : 1];
         if(albumInfosOld != null)
             System.arraycopy(albumInfosOld,0, albumInfosNew, 0, albumInfosOld.length);
@@ -79,9 +79,9 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
 
         if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
             try {
-                CreateFileIfNotExist();
+                CreateFileIfNotExist(appCompatActivity);
                 String json = JSONCreation(albumInfosNew);
-                OutputStreamWriter writer = new OutputStreamWriter(this.openFileOutput(_fileName, Context.MODE_PRIVATE));
+                OutputStreamWriter writer = new OutputStreamWriter(appCompatActivity.openFileOutput(_fileName, Context.MODE_PRIVATE));
                 writer.write(json);
                 writer.close();
             }catch (Exception ex){
@@ -89,12 +89,12 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
             }
         }
     }
-    private String ReadFromDatabase(){
+    public static String ReadFromDatabase(AppCompatActivity appCompatActivity){
         String result ="";
 
         try {
-            CreateFileIfNotExist();
-            InputStream inputStream = this.openFileInput(_fileName);
+            CreateFileIfNotExist(appCompatActivity);
+            InputStream inputStream = appCompatActivity.openFileInput(_fileName);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String build = "";
@@ -111,8 +111,8 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
         }
         return  result;
     }
-    private void CreateFileIfNotExist() throws IOException {
-        File file = new File(this.getFilesDir(), _fileName);
+    private static void CreateFileIfNotExist(AppCompatActivity appCompatActivity) throws IOException {
+        File file = new File(appCompatActivity.getFilesDir(), _fileName);
         if(!file.exists()){
             file.createNewFile();
         }

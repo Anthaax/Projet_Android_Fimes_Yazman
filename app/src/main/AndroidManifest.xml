@@ -64,6 +64,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".CdListActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

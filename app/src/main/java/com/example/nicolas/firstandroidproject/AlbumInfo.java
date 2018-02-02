@@ -21,4 +21,5 @@ public class AlbumInfo {
     public Integer id;
     public Community community;
     public String[] imageLabels;
+    public String artist;
 }
