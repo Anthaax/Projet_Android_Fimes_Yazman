@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
-        android:text="@string/selected_image_label"/>
+        android:text="Selected Image: "/>
 
     <ImageView
         android:id="@+id/selected_image"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/selected_image"
         android:layout_marginTop="10dp"
-        android:text="@string/result_label"
+        android:text="Result:"
         />
 
 
@@ -39,5 +39,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/select_image_button"/>
+        android:text="Select Image"/>
 </RelativeLayout>

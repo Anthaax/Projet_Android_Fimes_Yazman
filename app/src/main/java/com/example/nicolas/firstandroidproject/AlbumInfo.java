@@ -1,7 +1,7 @@
 package com.example.nicolas.firstandroidproject;
 
 /**
- * Created by Yamete on 28/01/2018.
+ * Created by Nicolas on 29/01/2018.
  */
 
 public class AlbumInfo {
@@ -20,6 +20,5 @@ public class AlbumInfo {
     public String type;
     public Integer id;
     public Community community;
+    public String[] imageLabels;
 }
-
-

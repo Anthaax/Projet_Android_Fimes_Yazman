@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/artist_name_label"
+        android:text="Artist:"
         />
 
         <EditText
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/album_name_label"
+        android:text="Album title:"
         />
 
     <EditText
@@ -50,7 +50,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/swap_album_artist"
+        android:text="SWAP"
         android:layout_gravity="center"
         android:id="@+id/swap_artist_album"
         />
@@ -67,7 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/style_label"
+            android:text="Genre:"
             />
 
         <RadioButton
@@ -100,7 +100,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/instrument_label"
+        android:text="Instruments:"
         />
 
     <ListView
@@ -114,9 +114,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_cd_button"
+            android:text="Add Cd!"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:id="@+id/add_cd_to_database"
             />
 
     </RelativeLayout>

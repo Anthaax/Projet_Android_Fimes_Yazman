@@ -47,12 +47,22 @@
             </intent-filter>
         </service>
 
+        <service android:name=".DiscogsSearchService">
+
+
+        </service>
+
         <activity android:name=".MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST"></action>
             </intent-filter>
         </activity>
 
+        <activity android:name=".AddCdToDatabaseActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.ADD_CD_TO_DATABASE"></action>
+            </intent-filter>
+        </activity>
 
     </application>
 

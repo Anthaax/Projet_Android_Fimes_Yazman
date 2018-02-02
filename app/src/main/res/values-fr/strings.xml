@@ -1,30 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Trouve ton CD!</string>
-    <string name="toast_menu">Toast</string>
-    <string name="style_label">Style :</string>
-    <string name="genre_label">Genre :</string>
-    <string name="genre_classical">Classique</string>
-    <string name="genre_rock">Rock</string>
-    <string name="genre_other">Autre...</string>
-    <string name="genre_all">All</string>
-    <string name="genre_unknown">Inconnu</string>
-    <string name="search_cd_label">Cherche un CD</string>
-    <string name="add_cd_label">Ajouter un nouveau CD</string>
-    <string name="add_cd_button">Ajouter le CD!</string>
-    <string name="selected_image_label">Image Selectionné:</string>
-    <string name="result_label">Résultat :</string>
-    <string name="select_image_button">Selectionne une image</string>
-    <string name="instrument_label">Instrument</string>
-    <string name="album_name_label">Album :</string>
-    <string name="artist_name_label">Artiste :</string>
-    <string name="confirmation_tag_deletion">Voulez vous supprimer le tag : </string>
-    <string name="download_button">Télécharger</string>
-    <string name="enter_url_layout">Où par URL:</string>
-    <string name="type_label_add">Label Type</string>
-    <string name="add_label">Ajouter</string>
-    <string name="fill_in_details_button">Completer</string>
-    <string name="swap_album_artist">Echanger les champs</string>
-    <string name="tag_name_label">Tag :</string>
-
-
+    <string name="app_name">Trouve ton Cd !</string>
+    <string name="toast_menu">Un toast</string>
 </resources>

@@ -4,39 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by Nicolas on 28/01/2018.
  */
 
 public class AddCdToDatabaseActivity extends AppCompatActivity {
+
     private String _fileName = "findYourCd.txt";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +35,27 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); // Intent which started this activity
 
-        CdParcelable cd = intent.getParcelableExtra("cd");
+        String albumInfoStr = intent.getStringExtra("albuminfojson");
+        AlbumInfo[] albumInfo = AddCdToDatabaseActivity.ReadResultForAlbumInfo(albumInfoStr);
+
+        if (albumInfo.length >= 1) {
+            WriteToDatabase(albumInfo[0]);
+        }
+        else{
+            Toast.makeText(AddCdToDatabaseActivity.this, "Error couldn't find album", Toast.LENGTH_LONG);
+        }
     }
 
-    private AlbumInfo[] ReadResult(String jsonStr) {
+    public static AlbumInfo[] ReadResult(String jsonStr) {
+        AlbumInfo[] albumInfos = new AlbumInfo[1];
+        SearchResponse response = new SearchResponse();
+        Gson gson = new Gson();
+        Type list = new TypeToken<SearchResponse>(){}.getType();
+        response = gson.fromJson(jsonStr, list);
+        return  response.results;
+    }
+
+    public static AlbumInfo[] ReadResultForAlbumInfo(String jsonStr){
         AlbumInfo[] albumInfos = new AlbumInfo[1];
         Gson gson = new Gson();
         Type list = new TypeToken<AlbumInfo[]>(){}.getType();
@@ -56,16 +63,19 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
         return  albumInfos;
     }
 
-    private String JSONCreation(AlbumInfo[] albumInfos){
+    public static String JSONCreation(AlbumInfo[] albumInfos){
         Gson gson = new Gson();
         return  gson.toJson(albumInfos);
     }
+
     private void WriteToDatabase(AlbumInfo albumInfo){
-        AlbumInfo[] albumInfosOld = ReadResult(ReadFromDatabase());
-        AlbumInfo[] albumInfosNew = new AlbumInfo[albumInfo != null ? albumInfosOld.length + 1 : 1];
-        if(albumInfo != null)
+        AlbumInfo[] albumInfosOld = ReadResultForAlbumInfo(ReadFromDatabase());
+        AlbumInfo[] albumInfosNew = new AlbumInfo[albumInfosOld != null ? albumInfosOld.length + 1 : 1];
+        if(albumInfosOld != null)
             System.arraycopy(albumInfosOld,0, albumInfosNew, 0, albumInfosOld.length);
-        albumInfosNew[albumInfo != null ? albumInfosOld.length : 0] = albumInfo;
+
+
+        albumInfosNew[albumInfosOld != null ? albumInfosOld.length : 0] = albumInfo;
 
         if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
             try {
@@ -97,11 +107,12 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
 
         }catch (Exception ex){
 
+           Log.e("EXCEPTION", "Error:", ex);
         }
         return  result;
     }
     private void CreateFileIfNotExist() throws IOException {
-        File file = new File(_fileName);
+        File file = new File(this.getFilesDir(), _fileName);
         if(!file.exists()){
             file.createNewFile();
         }

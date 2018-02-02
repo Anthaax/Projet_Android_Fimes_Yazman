@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.common.AccountPicker;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
@@ -85,6 +86,8 @@ public class AddCDActivity extends AppCompatActivity {
     private ArrayAdapter<String> labelAdapter;
     private GridView labelGrid;
     private EditText imageURL;
+    private EditText addLabelEditText;
+
     private Button downloadImageButton;
     private Button addTagButton;
     private Button fillInDetailsButton;
@@ -147,6 +150,16 @@ public class AddCDActivity extends AppCompatActivity {
                 Toast.makeText(AddCDActivity.this, "Must first download cd from URL or upload from gallery.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        this.addTagButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(AddCDActivity.this, "Wait until image loaded and labels found.", Toast.LENGTH_LONG).show();
+            }
+        });
+        this.addTagButton.setClickable(true);
+
+        this.addLabelEditText = (EditText) findViewById(R.id.add_tag_input_field);
     }
 
     protected void onResume(){
@@ -193,7 +206,27 @@ public class AddCDActivity extends AppCompatActivity {
 
                 addTagButton.setVisibility(View.VISIBLE);
                 addTagButton.setClickable(true);
-
+                addTagButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String label = addLabelEditText.getText().toString();
+                        label = label.trim();
+                        boolean contains = false;
+                        for (int i = 0; i < labelAdapter.getCount(); i++)
+                        {
+                            if (labelAdapter.getItem(i).equals(label))
+                                contains = true;
+                        }
+                        if (!contains)
+                        {
+                            labelAdapter.add(label);
+                        }
+                        else
+                        {
+                            Toast.makeText(AddCDActivity.this, "Label already exists.", Toast.LENGTH_LONG);
+                        }
+                    }
+                });
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -240,36 +273,6 @@ public class AddCDActivity extends AppCompatActivity {
                         startActivity(addCdFillInIntent);
                     }
                 });
-                /*
-                String url = "https://api.discogs.com/artists/1/releases?page=2&per_page=75";
-
-                HttpClient httpclient = new DefaultHttpClient();
-
-                try {
-                    HttpResponse response = httpclient.execute(new HttpGet(url));
-                    StatusLine statusLine = response.getStatusLine();
-                    if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                        ByteArrayOutputStream out = new ByteArrayOutputStream();
-                        response.getEntity().writeTo(out);
-                        String responseString = out.toString();
-
-                        JSONObject jObject = new JSONObject(responseString);
-
-                        jObject.getString("");
-                        out.close();
-                        //..more logic
-                    } else {
-                        //Closes the connection.
-                        response.getEntity().getContent().close();
-                        throw new IOException(statusLine.getReasonPhrase());
-                    }
-                }catch(IOException e){
-
-                }catch (JSONException e){
-
-                }
-
-            */
             }
         };
         // IntentFilter filter = new IntentFilter(CDImageAnalysisService.IMAGE_API_RESULT_BROADCAST_CHANNEL);
@@ -350,6 +353,7 @@ public class AddCDActivity extends AppCompatActivity {
         String[] accountTypes = new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE};
         Intent intent = AccountPicker.newChooseAccountIntent(null, null,
                 accountTypes, false, null, null, null, null);
+
         startActivityForResult(intent, REQUEST_CODE_PICK_ACCOUNT);
     }
 
@@ -374,12 +378,15 @@ public class AddCDActivity extends AppCompatActivity {
         {
             String url = imageURL.getText().toString();
             cdimage = CDImageAnalysisService.pictureAnalysis(this, url, CDImageAnalysisService.ANALYSE_PICTURE_AND_GET_RESULTS, accessToken);
-            runOnUiThread(new Runnable() {
+            if (cdimage != null)
+                runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     selectedImage.setImageBitmap(cdimage);
                 }
             });
+            else
+                Toast.makeText(AddCDActivity.this, "Error while loading image from url.", Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
-        android:text="@string/selected_image_label"/>
+        android:text="Selected Image: "/>
 
     <ImageView
         android:id="@+id/selected_image"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/selected_image"
         android:layout_centerHorizontal="true"
-        android:text="@string/select_image_button"/>
+        android:text="Select Image"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -45,14 +45,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/enter_url_layout"
+            android:text="Or enter URL:"
             />
 
         <EditText
             android:id="@+id/image_url"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:inputType="textUri"
+            android:inputType="text"
             android:layout_weight="0.5"
             />
 
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/download_button"
+            android:text="Download!"
             android:id="@+id/download_image_url_button"
             />
     </LinearLayout>
@@ -91,15 +91,16 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/type_label_add"
-            android:id="@+id/tag_input_field"
+            android:hint="Type in label"
+            android:id="@+id/add_tag_input_field"
             android:layout_weight="0.3"
+
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_tag_button"
-            android:text="@string/add_label"
+            android:text="Add label"
             android:clickable="false"
             android:visibility="visible"
             android:layout_weight="0.7"
@@ -111,7 +112,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fill_in_details_button"
+        android:text="Fill in details"
         android:layout_alignParentBottom="true"
         android:id="@+id/fill_in_info_button"
         android:layout_centerHorizontal="true"

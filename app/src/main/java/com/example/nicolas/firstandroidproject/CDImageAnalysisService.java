@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -75,6 +76,7 @@ public class CDImageAnalysisService extends IntentService {
     public static Bitmap pictureAnalysis(Context context, String url, int command, String accessToken)
     {
         URI imgUri;
+        int resizeFactor = 1;
 
         if (!basicErrorCheck(context, command, accessToken)) return null;
         if (url == null)
@@ -86,9 +88,23 @@ public class CDImageAnalysisService extends IntentService {
 
         try {
             // Download Image from URL
-            InputStream input = new java.net.URL(url).openStream();
+
+            url = url.trim();
+
+
             // Decode Bitmap
-            Bitmap image = BitmapFactory.decodeStream(input);
+            Bitmap image = null;
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            while (resizeFactor < 4 && image == null)
+            {
+                InputStream input = new java.net.URL(url).openStream();
+                options.inSampleSize = resizeFactor;
+                image = BitmapFactory.decodeStream(input, null , options);
+                resizeFactor = resizeFactor*2;
+                input.close();
+            }
+            if (image == null)
+                return null;
             image = resizeBitmap(image);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -96,6 +112,7 @@ public class CDImageAnalysisService extends IntentService {
 
             analysePicture(context, byteArray, command, IMG_SRC_URL, accessToken, url);
 
+           // input.close();
             return image;
            // Toast.makeText(context, "Correct URL", Toast.LENGTH_SHORT);
         } catch (Exception e) {

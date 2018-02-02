@@ -1,33 +1,13 @@
 <resources>
     <string name="app_name">Find your Cd!</string>
     <string name="toast_menu">Toast</string>
-    <string name="style_label">Style :</string>
-    <string name="genre_label">Genre :</string>
+    <string name="genre_txt">Genre</string>
     <string name="genre_classical">Classical</string>
     <string name="genre_rock">Rock</string>
     <string name="genre_other">Other...</string>
     <string name="find_your_cd">Find your CD!</string>
     <string name="genre_all">All</string>
     <string name="genre_unknown">Unknown</string>
-    <string name="search_cd_label">Search a CD</string>
-    <string name="add_cd_label">Add a new CD</string>
-    <string name="add_cd_button">Add Cd!</string>
-    <string name="selected_image_label">Selected Image:</string>
-    <string name="result_label">Result :</string>
-    <string name="select_image_button">Select Image</string>
-    <string name="instrument_label">Instrument</string>
-    <string name="album_name_label">Album :</string>
-    <string name="tag_name_label">Tag :</string>
-    <string name="artist_name_label">Artist :</string>
-    <string name="download_button">Download</string>
-    <string name="enter_url_layout">Or enter URL:</string>
-    <string name="type_label_add">Type label</string>
-    <string name="add_label">Add</string>
-    <string name="fill_in_details_button">Fill in details</string>
-    <string name="swap_album_artist">Swap fields</string>
-
-
-
 
     <string name="add_cd">Add a CD!</string>
     <string name="confirmation_tag_deletion">Do you want to delete this tag:</string>
