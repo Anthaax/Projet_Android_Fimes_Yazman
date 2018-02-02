@@ -24,5 +24,7 @@
     <string name="add_label">Ajouter</string>
     <string name="fill_in_details_button">Completer</string>
     <string name="swap_album_artist">Echanger les champs</string>
+    <string name="tag_name_label">Tag :</string>
+
 
 </resources>

@@ -17,6 +17,7 @@
     <string name="select_image_button">Select Image</string>
     <string name="instrument_label">Instrument</string>
     <string name="album_name_label">Album :</string>
+    <string name="tag_name_label">Tag :</string>
     <string name="artist_name_label">Artist :</string>
     <string name="download_button">Download</string>
     <string name="enter_url_layout">Or enter URL:</string>
