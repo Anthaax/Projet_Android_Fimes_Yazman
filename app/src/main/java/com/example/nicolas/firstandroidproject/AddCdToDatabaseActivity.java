@@ -40,12 +40,34 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
 
         if (albumInfo.length >= 1) {
             WriteToDatabase(albumInfo[0], this);
+
+            Intent cdInformationIntent = new Intent(AddCdToDatabaseActivity.this, CdInformationActivity.class);
+            cdInformationIntent.putExtra("albuminfojson", albumInfoStr);
+            startActivity(cdInformationIntent);
         }
         else{
             Toast.makeText(AddCdToDatabaseActivity.this, "Error couldn't find album", Toast.LENGTH_LONG);
         }
     }
 
+    public static void OverwriteDatabase(AlbumInfo[] newAlbums, AppCompatActivity activity){
+        if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
+            try {
+                File file = new File(activity.getFilesDir(), _fileName);
+                file.createNewFile();
+                OutputStreamWriter writer = new OutputStreamWriter(activity.openFileOutput(_fileName, Context.MODE_PRIVATE));
+                writer.write("");
+                writer.close();
+            }catch (Exception ex){
+
+            }
+        }
+        if (newAlbums != null && newAlbums.length >=1){
+            for (AlbumInfo ai : newAlbums) {
+                WriteToDatabase(ai, activity );
+            }
+        }
+    }
     public static AlbumInfo[] ReadResult(String jsonStr) {
         AlbumInfo[] albumInfos = new AlbumInfo[1];
         SearchResponse response = new SearchResponse();

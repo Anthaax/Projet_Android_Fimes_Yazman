@@ -67,6 +67,9 @@
         <activity android:name=".CdListActivity">
 
         </activity>
+        <activity android:name=".CdInformationActivity">
+
+        </activity>
 
     </application>
 

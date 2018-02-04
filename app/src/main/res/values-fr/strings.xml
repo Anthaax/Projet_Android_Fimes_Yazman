@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Trouve ton CD!</string>
+    <string name="app_name">Trouve ton CD !</string>
     <string name="toast_menu">Toast</string>
     <string name="style_label">Style :</string>
     <string name="genre_label">Genre :</string>
@@ -25,6 +25,15 @@
     <string name="fill_in_details_button">Completer</string>
     <string name="swap_album_artist">Echanger les champs</string>
     <string name="tag_name_label">Tag :</string>
-
-
+    <string name="no">Non</string>
+    <string name="yes">Oui</string>
+    <string name="image_label">Image :</string>
+    <string name="country_label">Pays :</string>
+    <string name="format_label">Format :</string>
+    <string name="barcode_label">Code bar :</string>
+    <string name="type_label">Type</string>
+    <string name="image_labels_label">Labels de l\'image :</string>
+    <string name="want_label">Ils le veulent :</string>
+    <string name="have_label">Ils l\'ont :</string>
+    <string name="delete">Supprimer de la base de données :</string>
 </resources>

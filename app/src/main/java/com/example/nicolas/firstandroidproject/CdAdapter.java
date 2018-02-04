@@ -2,6 +2,7 @@ package com.example.nicolas.firstandroidproject;
 
 
 import android.media.Image;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,17 @@ import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 
-public class CdAdapter extends RecyclerView.Adapter<CdAdapter.CdHolder> {
+public class CdAdapter extends RecyclerView.Adapter<CdAdapter.CdHolder>{
 
     private AlbumInfo[] _albumInfos;
+    private AppCompatActivity callingActivity;
+    private OnItemClickListener itemClickListener;
+
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.itemClickListener = mItemClickListener;
+    }
+
+
 
     @Override
     public CdHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,7 +41,7 @@ public class CdAdapter extends RecyclerView.Adapter<CdAdapter.CdHolder> {
         holder._genre.setText(current.genre[0]);
         holder._artistName.setText(current.artist);
         holder._albumName.setText(current.title);
-        //Glide.with(holder._view).load(current.thumb).into(holder._albumIMG);
+        Glide.with(callingActivity).load(current.thumb).into(holder._albumIMG);
     }
 
     @Override
@@ -40,7 +49,7 @@ public class CdAdapter extends RecyclerView.Adapter<CdAdapter.CdHolder> {
         return _albumInfos.length;
     }
 
-    public class CdHolder extends RecyclerView.ViewHolder  {
+    public class CdHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         ImageView _albumIMG;
         TextView _artistName;
         TextView _albumName;
@@ -55,12 +64,21 @@ public class CdAdapter extends RecyclerView.Adapter<CdAdapter.CdHolder> {
             _genre = itemView.findViewById(R.id.genre_name);
             _year = itemView.findViewById(R.id.year);
             _view = itemView;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v){
+            itemClickListener.onItemClick(v, getAdapterPosition(), _albumName.getText().toString());
+
         }
     }
 
-    public CdAdapter(AlbumInfo[] albumInfos){
+    public CdAdapter(AlbumInfo[] albumInfos, AppCompatActivity callActivity){
         super();
         _albumInfos = albumInfos;
+        callingActivity = callActivity;
     }
 }
 
