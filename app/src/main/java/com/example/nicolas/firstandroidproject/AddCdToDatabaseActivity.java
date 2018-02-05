@@ -46,7 +46,7 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
             startActivity(cdInformationIntent);
         }
         else{
-            Toast.makeText(AddCdToDatabaseActivity.this, "Error couldn't find album", Toast.LENGTH_LONG);
+            Toast.makeText(AddCdToDatabaseActivity.this, "Error couldn't find album", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -81,16 +81,20 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Type list = new TypeToken<AlbumInfo[]>(){}.getType();
         albumInfos = gson.fromJson(jsonStr, list);
+        if (albumInfos == null)
+            return null;
         for (int i = 0; i < albumInfos.length; i++) {
-            if(albumInfos[i].title != null && albumInfos[i].title.contains(albumInfos[i].artist)){
+            if(albumInfos[i].title != null){
                 StringBuilder builder = new StringBuilder();
                 String[] split = albumInfos[i].title.split("-");
-                for (int j = 1; j <split.length; j++) {
-                    builder.append(split[i]);
-                    if(j + 1 < split.length)
-                        builder.append("-");
+                if (split.length >= 2)
+                {
+                    albumInfos[i].title = split[1];
+                    albumInfos[i].artist = split[0];
                 }
-                albumInfos[i].title = builder.toString().substring(1);
+            } else {
+                albumInfos[i].title = "Unknownw title";
+                albumInfos[i].artist = "Unknown artist";
             }
         }
         return  albumInfos;

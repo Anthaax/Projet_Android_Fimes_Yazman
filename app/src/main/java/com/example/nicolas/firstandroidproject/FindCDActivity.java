@@ -69,92 +69,86 @@ public class FindCDActivity  extends AppCompatActivity {
                     boolean useTags = tagNb > 0;
 
                     AlbumInfo[] cds = localSearch();
-                    int[] score = new int[cds.length];
-                    int i = 0;
-                    for (AlbumInfo cd : cds)
-                    {
-                        String[] titleArtist = cd.title.split("-");
-                        if (titleArtist.length >= 2) {
-                            cd.artist = cd.title.split("-")[0].trim();
-                        }
-                        else{
-                            cd.artist = "UnknownArtist";
-                        }
-                        score[i] = 0;
-
-                        boolean artistMatch = false;
-                        boolean albumMatch = false;
-
-                        if (useArtistName)
-                        {
-                            if (cd.artist.toLowerCase().contains(artistNameStr))
-                            {
-                                score[i] += 10;
-                                artistMatch = true;
+                    int arrayLen;
+                    int[] score;
+                    int i;
+                    if (cds != null && cds.length > 0) {
+                        score = new int[cds.length];
+                        i = 0;
+                        for (AlbumInfo cd : cds) {
+                            String[] titleArtist = cd.title.split("-");
+                            if (titleArtist.length >= 2) {
+                                cd.artist = cd.title.split("-")[0].trim();
+                            } else {
+                                if (cd.artist == null)
+                                    cd.artist = "UnknownArtist";
                             }
-                            else
-                            {
-                                artistMatch = false;
-                            }
-                        }
+                            score[i] = 0;
 
-                        if (useAlbumName)
-                        {
-                            if (cd.title.toLowerCase().contains(albumNameStr))
-                            {
-                                score[i] += 10;
-                                albumMatch = true;
-                            }
-                            else
-                            {
-                                albumMatch = false;
-                            }
-                        }
-                        else
-                        {
-                        }
+                            boolean artistMatch = false;
+                            boolean albumMatch = false;
 
-                        if (useTags)
-                        {
-                            for (String tag : tags)
-                            {
-                                if (cd.imageLabels != null && cd.imageLabels.length > 0) {
-                                    for (String tagToCompare : cd.imageLabels) {
-                                        if ((!useAlbumName || albumMatch) && (!useArtistName || artistMatch)) {
-                                            if (tag.equals(tagToCompare)) {
-                                                score[i]++;
+                            if (useArtistName) {
+                                if (cd.artist.toLowerCase().contains(artistNameStr)) {
+                                    score[i] += 10;
+                                    artistMatch = true;
+                                } else {
+                                    artistMatch = false;
+                                }
+                            }
+
+                            if (useAlbumName) {
+                                if (cd.title.toLowerCase().contains(albumNameStr)) {
+                                    score[i] += 10;
+                                    albumMatch = true;
+                                } else {
+                                    albumMatch = false;
+                                }
+                            } else {
+                            }
+
+                            if (useTags) {
+                                for (String tag : tags) {
+                                    if (cd.imageLabels != null && cd.imageLabels.length > 0) {
+                                        for (String tagToCompare : cd.imageLabels) {
+                                            if ((!useAlbumName || albumMatch) && (!useArtistName || artistMatch)) {
+                                                if (tag.equals(tagToCompare)) {
+                                                    score[i]++;
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
+
+                            i++;
                         }
 
-                        i++;
-                    }
+                        boolean sorted = false;
+                        arrayLen = score.length;
 
-                    boolean sorted = false;
-                    int arrayLen = score.length;
-
-                    while (!sorted)
-                    {
-                        sorted = true;
-                        for ( i = 0; i < arrayLen-1; i++)
-                        {
-                            if (score[i] < score[i+1])
-                            {
-                                int tmp = score[i];
-                                score[i] = score[i+1];
-                                score[i+1] = tmp;
-                                AlbumInfo tmpCd;
-                                tmpCd = cds[i];
-                                cds[i] = cds[i+1];
-                                cds[i+1] = tmpCd;
-                                sorted = false;
+                        while (!sorted) {
+                            sorted = true;
+                            for (i = 0; i < arrayLen - 1; i++) {
+                                if (score[i] < score[i + 1]) {
+                                    int tmp = score[i];
+                                    score[i] = score[i + 1];
+                                    score[i + 1] = tmp;
+                                    AlbumInfo tmpCd;
+                                    tmpCd = cds[i];
+                                    cds[i] = cds[i + 1];
+                                    cds[i + 1] = tmpCd;
+                                    sorted = false;
+                                }
                             }
                         }
                     }
-
+                    else
+                    {
+                        arrayLen = 0;
+                        score = new int[1];
+                        score[0] = 0;
+                    }
                     if (arrayLen == 0 || (useAlbumName && useArtistName && score[0] < 20)||(score[0] == 0 && (useAlbumName || useArtistName))) {
                         String requestUrl = "https://api.discogs.com/database/search?artist=" + URLEncoder.encode(artistName.getText().toString(), "utf-8") + "&release_title=" + URLEncoder.encode(albumName.getText().toString(), "utf-8") + "&format=album&key=nNJIcOOiuEIRgXEIaOix&secret=AANxnfWVQStJWCjIdLCnVUpDdiAnTCLP";
 

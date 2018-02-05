@@ -89,7 +89,7 @@ public class AddCdFillInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // First, look up information on cd
                 try {
-                    String requestUrl = "https://api.discogs.com/database/search?artist=" + URLEncoder.encode(artistName.getText().toString(), "utf-8") + "&release_title=" + URLEncoder.encode(albumName.getText().toString(), "utf-8") + "&format=ambum&key=nNJIcOOiuEIRgXEIaOix&secret=AANxnfWVQStJWCjIdLCnVUpDdiAnTCLP";
+                    String requestUrl = "https://api.discogs.com/database/search?artist=" + URLEncoder.encode(artistName.getText().toString(), "utf-8") + "&release_title=" + URLEncoder.encode(albumName.getText().toString(), "utf-8") + "&format=album&key=nNJIcOOiuEIRgXEIaOix&secret=AANxnfWVQStJWCjIdLCnVUpDdiAnTCLP";
 
                     DiscogsSearchService.SearchDiscogsDatabase(AddCdFillInActivity.this, requestUrl);
                 }catch (UnsupportedEncodingException e){
@@ -119,7 +119,9 @@ public class AddCdFillInActivity extends AppCompatActivity {
 
                 intentAddToDatabase.putExtra("albuminfojson", AddCdToDatabaseActivity.JSONCreation(albums));
 
+                createNotification();
                 startActivity(intentAddToDatabase);
+;
             }
         };
 
