@@ -69,8 +69,7 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
         }
     }
     public static AlbumInfo[] ReadResult(String jsonStr) {
-        AlbumInfo[] albumInfos = new AlbumInfo[1];
-        SearchResponse response = new SearchResponse();
+        SearchResponse response;
         Gson gson = new Gson();
         Type list = new TypeToken<SearchResponse>(){}.getType();
         response = gson.fromJson(jsonStr, list);
@@ -78,10 +77,22 @@ public class AddCdToDatabaseActivity extends AppCompatActivity {
     }
 
     public static AlbumInfo[] ReadResultForAlbumInfo(String jsonStr){
-        AlbumInfo[] albumInfos = new AlbumInfo[1];
+        AlbumInfo[] albumInfos;
         Gson gson = new Gson();
         Type list = new TypeToken<AlbumInfo[]>(){}.getType();
         albumInfos = gson.fromJson(jsonStr, list);
+        for (int i = 0; i < albumInfos.length; i++) {
+            if(albumInfos[i].title != null && albumInfos[i].title.contains(albumInfos[i].artist)){
+                StringBuilder builder = new StringBuilder();
+                String[] split = albumInfos[i].title.split("-");
+                for (int j = 1; j <split.length; j++) {
+                    builder.append(split[i]);
+                    if(j + 1 < split.length)
+                        builder.append("-");
+                }
+                albumInfos[i].title = builder.toString().substring(1);
+            }
+        }
         return  albumInfos;
     }
 

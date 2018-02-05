@@ -40,4 +40,8 @@
     <string name="want_label">They want it:</string>
     <string name="have_label">They have it:</string>
     <string name="delete">Delete from database:</string>
+
+    <string name="notification_title">Album Info</string>
+    <string name="notification_content">Your album has been add to the application</string>
+
 </resources>

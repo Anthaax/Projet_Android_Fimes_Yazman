@@ -36,4 +36,6 @@
     <string name="want_label">Ils le veulent :</string>
     <string name="have_label">Ils l\'ont :</string>
     <string name="delete">Supprimer de la base de données :</string>
+    <string name="notification_title">Ajout d\'album</string>
+    <string name="notification_content">Votre album a été ajouté à l\'application</string>
 </resources>

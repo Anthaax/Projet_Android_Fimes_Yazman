@@ -1,5 +1,8 @@
 package com.example.nicolas.firstandroidproject;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -140,5 +143,22 @@ public class AddCdFillInActivity extends AppCompatActivity {
         this.albumName = findViewById(R.id.text_input_cdname);
         this.swapArtistAlbumButton = findViewById(R.id.swap_artist_album);
         this.addCdToDatabaseButton = findViewById(R.id.add_cd_to_database);
+    }
+
+    private final void createNotification(){
+        final int NOTIFICATION_ID = 001;
+        final NotificationManager mNotification = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        final Intent launchNotifiactionIntent = new Intent(this, AddCdFillInActivity.class);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                0, launchNotifiactionIntent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        Notification.Builder builder = new Notification.Builder(this)
+                .setContentTitle(getResources().getString(R.string.notification_title))
+                .setContentText(getResources().getString(R.string.notification_content))
+                .setContentIntent(pendingIntent);
+
+        mNotification.notify(NOTIFICATION_ID, builder.build());
     }
 }
