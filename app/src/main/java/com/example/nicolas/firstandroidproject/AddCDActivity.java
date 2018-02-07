@@ -383,15 +383,16 @@ public class AddCDActivity extends AppCompatActivity {
         {
             String url = imageURL.getText().toString();
             cdimage = CDImageAnalysisService.pictureAnalysis(this, url, CDImageAnalysisService.ANALYSE_PICTURE_AND_GET_RESULTS, accessToken);
-            if (cdimage != null)
+            if (cdimage != null) {
                 runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    selectedImage.setImageBitmap(cdimage);
-                }
-            });
-            else
-                Toast.makeText(AddCDActivity.this, "Error while loading image from url.", Toast.LENGTH_LONG).show();
+                    @Override
+                    public void run() {
+                        selectedImage.setImageBitmap(cdimage);
+                    }
+                });
+            }
+            else {
+            }
         }
     }
 }

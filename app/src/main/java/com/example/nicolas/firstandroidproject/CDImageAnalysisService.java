@@ -36,6 +36,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.content.ContentValues.TAG;
 
@@ -91,7 +93,13 @@ public class CDImageAnalysisService extends IntentService {
 
             url = url.trim();
 
+           // String pattern = "(http(s?):/)(/[^/]+)+" + "\.(?:jpg|gif|png)";
+            //String regex = "http(s?)://([\\w-]+\\.)+[\\w-]+(/[\\w- ./]*)+\\.(?:[gG][iI][fF]|[jJ][pP][gG]|[jJ][pP][eE][gG]|[pP][nN][gG]|[bB][mM][pP])";
 
+            String regex = "(http(s?):/)(/[^/]+)+" +"\\.(?:jpg|gif|png)";
+            Matcher m = Pattern.compile(regex).matcher(url);
+            if (!m.find())
+                return null;
             // Decode Bitmap
             Bitmap image = null;
             BitmapFactory.Options options = new BitmapFactory.Options();
