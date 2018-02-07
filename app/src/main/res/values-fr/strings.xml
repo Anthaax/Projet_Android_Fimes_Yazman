@@ -38,4 +38,5 @@
     <string name="delete">Supprimer de la base de données :</string>
     <string name="notification_title">Ajout d\'album</string>
     <string name="notification_content">Votre album a été ajouté à l\'application</string>
+    <string name="image_analysis_over">Analyse d\'image terminée. Vous pouvez procéder à la prochaine étape.</string>
 </resources>

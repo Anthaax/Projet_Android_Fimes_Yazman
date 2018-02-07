@@ -44,4 +44,5 @@
     <string name="notification_title">Album Info</string>
     <string name="notification_content">Your album has been add to the application</string>
 
+    <string name="image_analysis_over">Image analysis over. You can proceed to the next step.</string>
 </resources>

@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -89,6 +92,31 @@ public class CdInformationActivity extends AppCompatActivity {
         this.imageLabels = findViewById(R.id.image_labels_text_view);
         this.country = findViewById(R.id.country_text_view);
         this.removeFromDatabaseButton = findViewById(R.id.delete_from_database_button);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId();
+        Intent intent;
+        switch (itemId)
+        {
+            case R.id.search_cd_menu:
+                intent = new Intent(this, FindCDActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.add_cd_menu:
+                intent = new Intent(this, AddCDActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 
     public void setTextViews(AlbumInfo albumInfo)

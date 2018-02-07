@@ -183,11 +183,16 @@ public class AddCDActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int itemId = item.getItemId();
+        Intent intent;
         switch (itemId)
         {
             case R.id.search_cd_menu:
+                 intent = new Intent(this, FindCDActivity.class);
+                startActivity(intent);
                 break;
             case R.id.add_cd_menu:
+                 intent = new Intent(this, AddCDActivity.class);
+                startActivity(intent);
                 break;
         }
         return true;
@@ -199,7 +204,7 @@ public class AddCDActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 final CdParcelable imgReconRes = intent.getParcelableExtra(CDImageAnalysisService.CD_IMG_RECON_EXTRA_RES);
-
+                Toast.makeText(AddCDActivity.this, getResources().getText(R.string.image_analysis_over), Toast.LENGTH_LONG).show();
                 int nLabels = imgReconRes.getLabels().size();
                 labelAdapter.clear();
                 labelAdapter.addAll(imgReconRes.getLabels());
@@ -223,7 +228,7 @@ public class AddCDActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(AddCDActivity.this, "Label already exists.", Toast.LENGTH_LONG);
+                            Toast.makeText(AddCDActivity.this, "Label already exists.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

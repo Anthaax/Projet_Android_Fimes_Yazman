@@ -60,15 +60,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int itemId = item.getItemId();
+        Intent intent;
         switch (itemId)
         {
             case R.id.search_cd_menu:
+                intent = new Intent(this, FindCDActivity.class);
+                startActivity(intent);
                 break;
             case R.id.add_cd_menu:
+                intent = new Intent(this, AddCDActivity.class);
+                startActivity(intent);
                 break;
         }
         return true;
